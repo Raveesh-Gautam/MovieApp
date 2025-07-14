@@ -5,10 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import AppContext from "../store/auth-context";
 
 function Header() {
-  const {close,setClose}=  useContext(AppContext);
-    const handleCart=()=>{
-setClose(true);
-    }
+  const { close, setClose, cart } = useContext(AppContext);
+  const handleCart = () => {
+    setClose(true);
+  };
   return (
     <Navbar expand="lg" className="bg-dark shadow-sm">
       <Container>
@@ -31,12 +31,15 @@ setClose(true);
           </Nav>
         </Navbar.Collapse>
 
-       <Navbar.Brand className="border border-danger rounded px-3 py-1 text-light fw-semibold" onClick={handleCart}>
-  Cart
-</Navbar.Brand>
+        <Navbar.Brand
+          className="border border-danger rounded px-3 py-1 text-light fw-semibold"
+          onClick={handleCart}
+        >
+          Cart
+        </Navbar.Brand>
 
         <Navbar.Brand>
-          <span className="badge bg-success">{`0`}</span>
+          <span className="badge bg-success">{cart.length}</span>
         </Navbar.Brand>
       </Container>
     </Navbar>
