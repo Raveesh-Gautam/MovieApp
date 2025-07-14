@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import AppContext from "../store/auth-context";
 
 function Header() {
+  const {close,setClose}=  useContext(AppContext);
     const handleCart=()=>{
-
+setClose(true);
     }
   return (
     <Navbar expand="lg" className="bg-dark shadow-sm">
