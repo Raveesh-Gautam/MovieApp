@@ -5,6 +5,7 @@ const AppProvider = (props) => {
   const [close, setClose] = useState("");
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [noCart, setNoCart] = useState(false);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -32,6 +33,8 @@ const AppProvider = (props) => {
         quantity,
         setQuantity,
         addToCart,
+        noCart,
+        setNoCart,
       }}
     >
       {props.children}

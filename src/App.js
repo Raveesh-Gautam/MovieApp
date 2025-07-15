@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Products from './components/products/Products';
 import About from './pages/About';
 import AppProvider from './store/AppProvider';
+import Home from './pages/Home';
 
 const Layout = () => (
   <AppProvider>
@@ -28,6 +29,15 @@ const router = createBrowserRouter([
       </AppProvider>
     ),
   },
+  {
+    path:'/home',
+    element:(
+<AppProvider>
+        <Header />
+        <Home/>
+      </AppProvider>
+    ),
+  }
 ]);
 
 const App = () => {
