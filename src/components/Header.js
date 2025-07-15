@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import AppContext from "../store/auth-context";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const { close, setClose, cart } = useContext(AppContext);
@@ -10,7 +11,7 @@ function Header() {
     setClose(true);
   };
   return (
-    <Navbar expand="lg" className="bg-dark shadow-sm">
+    <Navbar expand="lg" className="bg-dark shadow-sm p-stickey">
       <Container>
         <Navbar.Brand href="#home" className="fw-bold text-primary">
           MyShop
@@ -25,9 +26,16 @@ function Header() {
             <Nav.Link href="#Store" className="text-light">
               Store
             </Nav.Link>
-            <Nav.Link href="#About" className="text-light">
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link text-light fw-bold border-bottom border-light"
+                  : "nav-link text-light"
+              }
+            >
               About
-            </Nav.Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
 
