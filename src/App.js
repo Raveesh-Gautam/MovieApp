@@ -7,6 +7,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import AppProvider from './store/AppProvider';
 import Store from './pages/Store';
+import Contact from './pages/Contact';
 
 
 const Layout = () => (
@@ -46,6 +47,15 @@ const router = createBrowserRouter([
 <AppProvider>
         <Header />
         <Store/>
+      </AppProvider>
+    ),
+  },
+    {
+  path:'/contact',
+    element:(
+<AppProvider>
+        <Header />
+       <Contact/>
       </AppProvider>
     ),
   }

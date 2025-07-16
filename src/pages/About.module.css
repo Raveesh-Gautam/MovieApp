@@ -19,3 +19,22 @@
   color: #777;
   font-size: 17px;
 }
+.contact{
+display:flex;
+justify-content: center;
+margin-bottom: 30px;
+
+}
+.contact_btn{
+
+   width: 20%;
+  text-decoration: none;
+  text-align: center;
+  background: #56ccf2;
+  color: white;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

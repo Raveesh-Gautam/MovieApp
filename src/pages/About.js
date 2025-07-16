@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./About.module.css";
 import CardAbout from "./Card";
+import { NavLink } from "react-router-dom";
 
 const About = () => {
   return (
@@ -49,6 +50,11 @@ const About = () => {
           such as smartphones. Computers power the Internet, which links
           billions of computers and users.
         </p>
+      </div>
+      <div className={styles.contact}>
+      <NavLink className={styles.contact_btn} to="/contact" >
+              Contact Us
+            </NavLink>
       </div>
     </React.Fragment>
   );
