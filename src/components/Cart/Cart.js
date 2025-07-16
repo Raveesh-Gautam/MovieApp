@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useContext } from "react";
 import Modal from "../../UI/Modal";
 import AppContext from "../../store/auth-context";
 
 const Cart = () => {
-  const { close, setClose, cart, setCart } = useContext(AppContext);
+  const { close, setClose, cart, setCart, order, setOrder } =
+    useContext(AppContext);
 
   const handleDelete = (title) => {
     setCart(cart.filter((item) => item.title !== title));
@@ -16,6 +17,10 @@ const Cart = () => {
   );
   const hanldeCloseModal = () => {
     setClose(false);
+  };
+
+  const handleOrder = () => {
+    setOrder(true);
   };
   return (
     <React.Fragment>
@@ -87,6 +92,12 @@ const Cart = () => {
 
               <div className="text-end fw-bold mt-3 fs-5">
                 Total: ${totalAmount}
+              </div>
+              <div
+                onClick={handleOrder}
+                className="text-center fw-bold mt-3 fs-5 bg-danger "
+              >
+                Order
               </div>
             </div>
           )}

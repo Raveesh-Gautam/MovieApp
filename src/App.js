@@ -4,8 +4,10 @@ import Cart from './components/Cart/Cart';
 import Header from './components/Header';
 import Products from './components/products/Products';
 import About from './pages/About';
-import AppProvider from './store/AppProvider';
 import Home from './pages/Home';
+import AppProvider from './store/AppProvider';
+import Store from './pages/Store';
+
 
 const Layout = () => (
   <AppProvider>
@@ -35,6 +37,15 @@ const router = createBrowserRouter([
 <AppProvider>
         <Header />
         <Home/>
+      </AppProvider>
+    ),
+  },
+  {
+  path:'/store',
+    element:(
+<AppProvider>
+        <Header />
+        <Store/>
       </AppProvider>
     ),
   }

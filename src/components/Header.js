@@ -1,21 +1,18 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import AppContext from "../store/auth-context";
 import { NavLink, useLocation } from "react-router-dom";
+import AppContext from "../store/auth-context";
 
 function Header() {
   const { close, setClose, cart, noCart, setNoCart } = useContext(AppContext);
   const location = useLocation();
   useEffect(() => {
-    setNoCart(location.pathname === "/about");
+    const hideCartRoutes = ["/about", "/home"];
+    setNoCart(hideCartRoutes.includes(location.pathname));
   }, [location.pathname, setNoCart]);
 
- useEffect(() => {
-    setNoCart(location.pathname === "/home");
-  }, [location.pathname, setNoCart]);
-  
   const handleCart = () => {
     setClose(true);
   };
@@ -29,7 +26,7 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto ">
-           <NavLink
+            <NavLink
               to="/home"
               className={({ isActive }) =>
                 isActive
@@ -39,9 +36,16 @@ function Header() {
             >
               Home
             </NavLink>
-            <Nav.Link href="#Store" className="text-light">
+             <NavLink
+              to="/store"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link text-light fw-bold border-bottom border-light"
+                  : "nav-link text-light"
+              }
+            >
               Store
-            </Nav.Link>
+            </NavLink>
             <NavLink
               to="/about"
               className={({ isActive }) =>
