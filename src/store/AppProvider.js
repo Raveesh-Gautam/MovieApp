@@ -8,6 +8,9 @@ const AppProvider = (props) => {
   const [noCart, setNoCart] = useState(false);
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loginError, setLoginError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,7 +29,9 @@ const AppProvider = (props) => {
 
     fetchProducts();
   }, []);
+
   console.log("cart data", cart);
+
   useEffect(() => {
     const postProducts = async () => {
       try {
@@ -73,6 +78,43 @@ const AppProvider = (props) => {
     });
   };
 
+  const loginHandler = async (email, password, navigate) => {
+    try {
+      const response = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD-93uQwvBG0C8_WD6HtONEwK9Zj9MwIfQ`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error.message || "Authentication failed!");
+      }
+
+      setToken(data.idToken);
+      setIsLogin(true);
+      localStorage.setItem("token", data.idToken);
+      navigate("/store");
+    } catch (error) {
+      setLoginError(error.message);
+    }
+  };
+
+  const logoutHandler = () => {
+    setToken(null);
+    setIsLogin(false);
+    localStorage.removeItem("token");
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -88,6 +130,11 @@ const AppProvider = (props) => {
         products,
         order,
         setOrder,
+        isLogin,
+        token,
+        loginHandler,
+        logoutHandler,
+        loginError,
       }}
     >
       {props.children}

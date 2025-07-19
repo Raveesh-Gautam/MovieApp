@@ -1,14 +1,14 @@
 // App.js
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Cart from './components/Cart/Cart';
-import Header from './components/Header';
-import Products from './components/products/Products';
-import About from './pages/About';
-import Home from './pages/Home';
-import AppProvider from './store/AppProvider';
-import Store from './pages/Store';
-import Contact from './pages/Contact';
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Cart from "./components/Cart/Cart";
+import Header from "./components/Header";
+import Products from "./components/products/Products";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import AppProvider from "./store/AppProvider";
+import Store from "./pages/Store";
+import Contact from "./pages/Contact";
+import AuthForm from "./components/Auth/AuthForm";
 
 const Layout = () => (
   <AppProvider>
@@ -20,11 +20,11 @@ const Layout = () => (
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
   },
   {
-    path: '/about',
+    path: "/about",
     element: (
       <AppProvider>
         <Header />
@@ -33,31 +33,39 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path:'/home',
-    element:(
-<AppProvider>
+    path: "/home",
+    element: (
+      <AppProvider>
         <Header />
-        <Home/>
+        <Home />
       </AppProvider>
     ),
   },
   {
-  path:'/store',
-    element:(
-<AppProvider>
+    path: "/store",
+    element: (
+      <AppProvider>
         <Header />
-        <Store/>
+        <Store />
       </AppProvider>
     ),
   },
-    {
-  path:'/contact',
-    element:(
-<AppProvider>
+  {
+    path: "/contact",
+    element: (
+      <AppProvider>
         <Header />
-       <Contact/>
+        <Contact />
       </AppProvider>
     ),
+  },
+  {
+    path:'/auth',
+    element:(
+      <AppProvider>
+      <AuthForm />
+      </AppProvider>
+    )
   }
 ]);
 

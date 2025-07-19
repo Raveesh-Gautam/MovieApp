@@ -7,6 +7,7 @@ const Contact = () => {
   const handleFormData = (e) => {
     e.preventDefault();
     console.log(form); 
+    alert("Request is submitted successfully!")
     setForm({ uname: "", email: "", phone: "" });
   };
 
